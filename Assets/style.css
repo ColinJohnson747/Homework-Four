@@ -1,0 +1,22 @@
+#bg-info{
+    background-color: white;
+}
+h1{
+    text-align: center;
+}
+
+
+
+@mixin clearfix() {
+    &::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+  }
+  
+ 
+  .element {
+    @include clearfix;
+  }
+

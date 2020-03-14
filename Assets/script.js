@@ -36,6 +36,8 @@ var multipleChoice = [
   }
 ];
 
+
+
 function timerStart() {
   var secondsLeft = 75;
   var timerInterval = setInterval(function() {
@@ -47,30 +49,54 @@ function timerStart() {
       finalScreen();
     }
   }, 1000);
+  questionLoop()
 }
 
 
-function questionLoop(){
-    questions++;
 
-    if (questions > multipleChoice.length){
-        "endgame";
-        return;
+
+function gameOver() {
+    clearInterval(timerInterval);
+    var endScreen = "<h2>Game Over!</h2> <Your time left was>" + secondsLeft + "</h3> <input type= 'text' id='Initials' placeholder='initials'><button onclick='recordScore()'>Record Your Score!</button>";
+
+    document.getElementById("mainPage").innerHTML = endScreen;
+}
+
+
+function wrong() {
+  timeLeft -= 15;
+  questionLoop();
+}
+
+function questionLoop() {
+  questions++;
+
+  if (questions > multipleChoice.length) {
+    gameOver();
+    return;
+  }
+
+  var quiz = "<h1>" + multipleChoice[questions].title + "</h1>";
+
+  for (i = 0; i < multipleChoice[questions].choices.length; i++) {
+    var buttonSelect = 'button onclick="[ANS}">[CHOICE]</button>';
+    buttonCode = buttonCode.replace(
+      "[CHOICE]",
+      questions[currentQuestion].choices[buttonLoop]
+    );
+    if (
+      questions[currentQuestion].choices[buttonLoop] ==
+      questions[currentQuestion].answer
+    ) {
+      buttonCode = buttonCode.replace("[ANS]", "correct()");
+    } else {
+      buttonCode = buttonCode.replace("[ANS]", "incorrect()");
     }
+    quizContent += buttonCode;
+  }
 
-
-    var quiz = "<h1>" + multipleChoice[questions].title "</h1>"
+  document.getElementById(".startingPage").innerHTML = quizContent;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 function showScores() {}
+$("#startBtn").on("click", timerStart());

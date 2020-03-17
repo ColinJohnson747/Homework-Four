@@ -37,7 +37,7 @@ var currentQuestion = -1;
 var timeLeft = 0;
 var timer;
 
-//starts the countdown timer once user clicks the 'start' button
+//starts the countdown 
 function start() {
   timeLeft = 75;
   document.getElementById("timeLeft").innerHTML = timeLeft;
@@ -45,7 +45,7 @@ function start() {
   timer = setInterval(function() {
     timeLeft--;
     document.getElementById("timeLeft").innerHTML = timeLeft;
-    //proceed to end the game function when timer is below 0 at any time
+    //proceed to end the game when timer is 0
     if (timeLeft <= 0) {
       clearInterval(timer);
       endGame();
@@ -55,7 +55,7 @@ function start() {
   next();
 }
 
-//stop the timer to end the game
+//stop the timer and ends game
 function endGame() {
   clearInterval(timer);
 
@@ -74,7 +74,7 @@ function endGame() {
   document.getElementById("quizBody").innerHTML = quizContent;
 }
 
-//store the scores on local storage
+//store the scores 
 
 function getScore() {
   var quizContent =
@@ -99,7 +99,7 @@ function setScore() {
   getScore();
 }
 
-//clears the score name and value in the local storage if the user selects 'clear score'
+//clears the score name and value if the user selects 'clear score'
 function clearScore() {
   localStorage.setItem("highscore", "");
   localStorage.setItem("highscoreName", "");
@@ -114,11 +114,7 @@ function incorrect() {
   next();
 }
 
-//increases the score by 20points if the user chooses the correct answer
-function correct() {
-  score += 20;
-  next();
-}
+
 
 //reset the game
 function resetGame() {

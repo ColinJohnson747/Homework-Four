@@ -7,7 +7,7 @@ var questions = [
   {
     title: "The condition of an if/else statement is closed within:",
     choices: ["Commas", "Brackets", "Parentheses", "Braces"],
-    correctAnswer: "Parentheses"
+    answer: "Parentheses"
   },
   {
     title: "Arrays in Javascript can be used to store:",
@@ -37,7 +37,7 @@ var currentQuestion = -1;
 var timeLeft = 0;
 var timer;
 
-//starts the countdown 
+//starts the countdown
 function start() {
   timeLeft = 75;
   document.getElementById("timeLeft").innerHTML = timeLeft;
@@ -62,26 +62,24 @@ function endGame() {
   var quizContent =
     `
     <h2>Game over!</h2>
-    <h3>You got a ` +
-    score +
-    ` /100!</h3>
-    <h3>That means you got ` +
-    score / 20 +
-    ` questions correct!</h3>
+    <h3>Your time was ` +
+    timeLeft +
+    ` <h3> seconds. ` +
+    `
     <input type="text" id="name" placeholder="First name"> 
     <button onclick="setScore()">Set score!</button>`;
 
   document.getElementById("quizBody").innerHTML = quizContent;
 }
 
-//store the scores 
+//store the scores
 
 function getScore() {
   var quizContent =
     `
     <h2>` +
     localStorage.getItem("highscoreName") +
-    `'s highscore is:</h2>
+    `'s highscorez:</h2>
     <h1>` +
     localStorage.getItem("highscore") +
     `</h1><br> 
@@ -94,7 +92,7 @@ function getScore() {
 }
 
 function setScore() {
-  localStorage.setItem("highscore", score);
+  localStorage.setItem("highscore", timeLeft);
   localStorage.setItem("highscoreName", document.getElementById("name").value);
   getScore();
 }
@@ -107,15 +105,14 @@ function clearScore() {
   resetGame();
 }
 
-
-
 function incorrect() {
   timeLeft -= 5;
   next();
 }
 
-
-
+function correct(){
+  next();
+}
 //reset the game
 function resetGame() {
   clearInterval(timer);
@@ -137,8 +134,6 @@ function resetGame() {
 
   document.getElementById("quizBody").innerHTML = quizContent;
 }
-
-
 
 //loops through the questions
 function next() {
@@ -162,7 +157,7 @@ function next() {
       questions[currentQuestion].choices[buttonLoop]
     );
     if (
-      questions[currentQuestion].choices[buttonLoop] ==
+      questions[currentQuestion].choices[buttonLoop] ===
       questions[currentQuestion].answer
     ) {
       buttonCode = buttonCode.replace("[ANS]", "correct()");

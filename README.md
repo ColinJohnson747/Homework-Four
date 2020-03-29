@@ -1,8 +1,7 @@
 # Online Quiz
 
+In this project I created a quiz that test general knowledge about coding. 
 
-
-In this project I created a quiz that test general knowledge about coding.
 
 As a programmer, you want to be able to keep your mind sharp so that you are able to perform effectivly and efficently. This online quiz should help you.
 

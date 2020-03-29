@@ -31,7 +31,7 @@ var questions = [
     answer: "Netscape"
   }
 ];
-
+console.log(questions[0].choices.length)
 var score = 0;
 var currentQuestion = -1;
 var timeLeft = 0;
@@ -106,11 +106,11 @@ function clearScore() {
 }
 
 function incorrect() {
-  timeLeft -= 5;
+  timeLeft -= 15;
   next();
 }
 
-function correct(){
+function correct() {
   next();
 }
 //reset the game

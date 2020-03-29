@@ -6,7 +6,6 @@ h1{
 }
 
 
-
 @mixin clearfix() {
     &::after {
       display: block;
